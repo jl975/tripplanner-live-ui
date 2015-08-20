@@ -11,6 +11,10 @@ body {
   min-width: -webkit-min-content;
 }
 
+ul {
+  list-style: none;
+}
+
 #app {
   border-left: 2px solid lighten($medium-brown, 25%);
   border-right: 2px solid lighten($medium-brown, 25%);
@@ -128,6 +132,8 @@ h3 {
     color: #fff;
   }
   &.current-day {
+    padding: 0;
+    margin: 0;
     background: $light-blue;
     color: $medium-brown;
     &:hover {
@@ -179,5 +185,11 @@ h3 {
   }
   > .remove {
     margin-left: 1em;
+  }
+}
+
+.list-group {
+  li {
+    margin: 5px 0;
   }
 }
