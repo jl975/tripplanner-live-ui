@@ -93,6 +93,11 @@ $(document).ready(function(){
 
 
 	$('#remove-day').on('click', function() {
+		days[currentDay].markers.forEach(function(marker) {
+			marker.setMap(null);
+			marker = null;
+		});
+		
 		days.splice(currentDay, 1);
 		$('.day-buttons').children().last().prev().remove();
 		numDays--;
@@ -105,6 +110,8 @@ $(document).ready(function(){
 		if (currentDay > numDays) currentDay = numDays;
 		var newCurrentDay = $('button:contains("'+currentDay+'")');
 		newCurrentDay.addClass('current-day');
+
+
 
 		repopulate();
 
