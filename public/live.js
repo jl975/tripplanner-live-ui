@@ -56,7 +56,6 @@ $(document).ready(function(){
 			}
 			locationCache[value] = getLocation(location);
 			updateMap();
-
 		}
 	});
 
@@ -128,8 +127,24 @@ $(document).ready(function(){
 		repopulate();
 
 		updateMap();
+		if(days[currentDay].markers.length<1){
+			goHome();
+		}
+
 	})
 
+	function goHome() {
+		var opts = {
+			position: new google.maps.LatLng(40.705189,-74.009209),
+			map : map,
+			zoom:5
+		}
+		var mark = new google.maps.Marker(opts);
+		var bounds = new google.maps.LatLngBounds();
+		bounds.extend(mark.position);
+		map.fitBounds(bounds);
+
+	}
 
 	function repopulate() {
 		today = days[currentDay];
@@ -182,7 +197,11 @@ $(document).ready(function(){
 		    });
 		  });
 		}
-
+		var bounds= new google.maps.LatLngBounds();
+		today.markers.forEach(function(mark){
+			bounds.extend(mark.position);
+		});
+		map.fitBounds(bounds);
 	}
 
 	function deleteAllMarkers() {
